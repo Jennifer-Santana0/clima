@@ -41,10 +41,10 @@ button{
     background-color: var(--cor-azul);
     cursor: pointer;
 }
-#container{
+.container{
     background-color: white;
     width: 30%;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -64,7 +64,7 @@ h1{
     #search{
         width: 70%;
     }
-    #container{
+    .container{
         width: 70%;
     }
 }
@@ -72,7 +72,7 @@ h1{
     #search{
         width: 50%;
     }
-    #container{
+    .container{
         width: 50%;
     }
 }
