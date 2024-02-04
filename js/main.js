@@ -13,45 +13,51 @@ function kelvinParaCelsius(kelvin) {
 const get_weather = async(cidade) =>{
     try{
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade},SE,BR&lang=pt_br&appid=${key}`)
-        const data = await response.json()
-
-        // Congigurando a data
-        const tempo = new Date()
-         
-        let dia = tempo.getDate()
-        dia = dia < 10? '0'+ dia : dia
-
-        let mes = tempo.getMonth()
-        mes = mes < 10? '0'+ mes : mes
-
-        let ano = tempo.getFullYear()
 
         const container = document.querySelector('.container')
         container.style.display = 'flex'
         container.classList.add('border')
-        container.innerHTML = ''
 
-        const p_data = document.createElement('p')
-        p_data.innerHTML = `${dia}/${mes}/${ano}`
+        if (response.ok){
+            const data = await response.json()
 
-        const p_cidade = document.createElement('p')
-        p_cidade.innerHTML = data.name
+             // Congigurando a data
+            const tempo = new Date()
+            
+            let dia = tempo.getDate()
+            dia = dia < 10? '0'+ dia : dia
 
-        const grau = document.createElement('h1')
-        let kelvin = data.main.temp
-        grau.innerHTML = kelvinParaCelsius(kelvin) + 'º'
+            let mes = tempo.getMonth()
+            mes = mes < 10? '0'+ mes : mes
 
-        const p_ceu = document.createElement('p')
-        p_ceu.innerHTML = data.weather[0].description
+            let ano = tempo.getFullYear()
 
-        container.appendChild(p_data)
-        container.appendChild(p_cidade)
-        container.appendChild(grau)
-        container.appendChild(p_ceu)
+            container.innerHTML = ''
 
-        
+            const p_data = document.createElement('p')
+            p_data.innerHTML = `${dia}/${mes}/${ano}`
+
+            const p_cidade = document.createElement('p')
+            p_cidade.innerHTML = data.name
+
+            const grau = document.createElement('h1')
+            let kelvin = data.main.temp
+            grau.innerHTML = kelvinParaCelsius(kelvin) + 'º'
+
+            const p_ceu = document.createElement('p')
+            p_ceu.innerHTML = data.weather[0].description
+
+            container.appendChild(p_data)
+            container.appendChild(p_cidade)
+            container.appendChild(grau)
+            container.appendChild(p_ceu)
+
+        } else {
+            container.innerHTML = 'Não encontrada'
+        }
+
     }catch(err){
-        console.log(err)
+        console.log('ff')
     }
 } 
 
@@ -61,5 +67,15 @@ btn.addEventListener('click',()=>{
         alert('Por favor dogite um nome de uma cidade')
     } else {
         get_weather(nome)
+    }
+})
+document.addEventListener('keyup',(event)=>{
+    if (event.keyCode===13){
+        const nome = input.value
+        if(nome===''){
+            alert('Por favor dogite um nome de uma cidade')
+        } else {
+            get_weather(nome)
+        }
     }
 })
