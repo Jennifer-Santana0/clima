@@ -5,7 +5,8 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 :root{
-    --cor-azul: #90c9ff;
+    --cor-titulo: #248beb;
+    --cor-btn: #7abfff;
     --cor-branco: #e1e1e5;
     --cor-cinza: #324252;
 }
@@ -21,7 +22,7 @@ body{
     background-color: var(--cor-branco);
 }
 h2{
-    color: var(--cor-azul);
+    color: var(--cor-titulo);
     margin-bottom: 20px;
     font-size: 40px;
 }
@@ -38,8 +39,10 @@ input{
 }
 button{
     width: 30%;
-    background-color: var(--cor-azul);
+    background-color: var(--cor-btn);
     cursor: pointer;
+    letter-spacing: 1px;
+    font-size: 16px;
 }
 .container{
     background-color: white;
