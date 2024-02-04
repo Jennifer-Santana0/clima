@@ -2,10 +2,11 @@ const key = '40a456493bf084075887ae0045fb36d9'
 const input = document.getElementsByTagName('input')[0]
 const btn = document.getElementsByTagName('button')[0]
 
-function fahrenheitParaCelsius(fahrenheit) {
+function kelvinParaCelsius(kelvin) {
     // Aplicando a fórmula de conversão
-    var celsius = (5 / 9) * (fahrenheit - 32);
-    return celsius;
+    let celsius = kelvin - 273.15
+    let c = String(celsius).slice(0, 2)
+    return c
 }
 
 
@@ -37,7 +38,8 @@ const get_weather = async(cidade) =>{
         p_cidade.innerHTML = data.name
 
         const grau = document.createElement('h1')
-        grau.innerHTML = '25'+'º'
+        let kelvin = data.main.temp
+        grau.innerHTML = kelvinParaCelsius(kelvin) + 'º'
 
         const p_ceu = document.createElement('p')
         p_ceu.innerHTML = data.weather[0].description
@@ -47,8 +49,6 @@ const get_weather = async(cidade) =>{
         container.appendChild(grau)
         container.appendChild(p_ceu)
 
-       
-        // console.log(data.main.temp)
         
     }catch(err){
         console.log(err)
